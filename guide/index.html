@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>دليل FamCoins – محفظة العائلة</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 18mm 15mm; }
+  :root { --ink:#121214; --sub:#6b6b72; --card:#f4f4f6; --line:#e6e6ea; --gold:#ffb81f; --gold2:#fff4d6;
+          --green:#2e9e5b; --blue:#3f8cff; --purple:#8a6bff; --red:#e5484d; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "SF Arabic", "Geeza Pro", "Noto Naskh Arabic", sans-serif; color: var(--ink);
+         font-size: 11.5pt; line-height: 1.85; margin: 0; background: #fff; }
+  h1, h2, h3 { line-height: 1.35; margin: 0; }
+  h2 { font-size: 21pt; font-weight: 800; margin-bottom: 4mm; display: flex; align-items: center; gap: 3mm; }
+  h2 .num { background: var(--ink); color: #fff; border-radius: 50%; width: 11mm; height: 11mm; display: inline-flex;
+            align-items: center; justify-content: center; font-size: 13pt; flex: none; }
+  h3 { break-after: avoid; font-size: 14pt; font-weight: 700; margin: 5mm 0 2mm; }
+  p { margin: 0 0 3mm; }
+  .lead { font-size: 12.5pt; color: #333; }
+  .muted { color: var(--sub); }
+  section { page-break-before: always; }
+  .avoid { break-inside: avoid; }
+  ul { margin: 0 0 3mm; padding-right: 6mm; }
+  li { margin-bottom: 1.2mm; }
+  b { font-weight: 700; }
+  .en { direction: ltr; unicode-bidi: isolate; font-family: -apple-system, "SF Pro Text", sans-serif; }
+
+  /* cover */
+  .cover { height: 260mm; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+           background: radial-gradient(circle at 50% 38%, var(--gold2) 0, #fff 55%); border-radius: 8mm; }
+  .coin { width: 42mm; height: 42mm; border-radius: 50%; background: linear-gradient(160deg, #ffd25e, #ffa600);
+          display: flex; align-items: center; justify-content: center; color: #fff; font: 900 26mm/1 -apple-system, sans-serif;
+          box-shadow: inset 0 0 0 3mm rgba(255,255,255,.45), 0 6mm 14mm rgba(255,166,0,.35); }
+  .cover h1 { font-size: 40pt; font-weight: 900; margin-top: 10mm; }
+  .cover .sub { font-size: 17pt; color: #444; margin-top: 3mm; }
+  .cover .tag { margin-top: 10mm; display: inline-block; background: var(--ink); color: #fff; border-radius: 99px; padding: 2mm 7mm; font-size: 12pt; }
+  .cover .phones { display: flex; gap: 6mm; margin-top: 14mm; }
+  .cover .phones img { width: 42mm; }
+  .cover .foot { margin-top: 12mm; color: var(--sub); font-size: 10pt; }
+
+  /* toc */
+  .toc { columns: 2; column-gap: 10mm; margin-top: 6mm; }
+  .toc div { display: flex; gap: 3mm; padding: 2.2mm 0; border-bottom: 1px dashed var(--line); break-inside: avoid; }
+  .toc .n { font-weight: 800; min-width: 7mm; color: var(--gold); }
+
+  /* phone frames */
+  .phone { width: 52mm; border-radius: 7mm; border: 1.6mm solid #111; overflow: hidden; background: #000; flex: none;
+           box-shadow: 0 2.5mm 7mm rgba(0,0,0,.18); }
+  .phone img { display: block; width: 100%; }
+  .phone.sm { width: 44mm; border-radius: 6mm; border-width: 1.3mm; }
+  .cap { font-size: 9.5pt; color: var(--sub); text-align: center; margin-top: 2mm; }
+  .shots { display: flex; gap: 6mm; justify-content: center; align-items: flex-start; margin: 4mm 0; flex-wrap: wrap; }
+  .fig { display: flex; flex-direction: column; align-items: center; }
+  .row { display: flex; gap: 8mm; align-items: flex-start; }
+  .row .txt { flex: 1; }
+
+  /* boxes */
+  .box { background: var(--card); border-radius: 4mm; padding: 4mm 5mm; margin: 3mm 0; break-inside: avoid; }
+  .tip { background: var(--gold2); border-right: 1.5mm solid var(--gold); }
+  .warn { background: #fdeceb; border-right: 1.5mm solid var(--red); }
+  .good { background: #e8f6ee; border-right: 1.5mm solid var(--green); }
+  .psy { background: #f0ecff; border-right: 1.5mm solid var(--purple); }
+  .box .t { font-weight: 800; margin-bottom: 1mm; display: block; }
+
+  .steps { counter-reset: s; list-style: none; padding: 0; }
+  .steps li { counter-increment: s; position: relative; padding-right: 10mm; margin-bottom: 2.5mm; }
+  .steps li::before { content: counter(s); position: absolute; right: 0; top: .3mm; width: 7mm; height: 7mm; border-radius: 50%;
+                      background: var(--ink); color: #fff; font-size: 9.5pt; display: flex; align-items: center; justify-content: center; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 10.5pt; break-inside: avoid; }
+  th, td { padding: 2.3mm 3mm; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; }
+  th { background: var(--ink); color: #fff; font-weight: 700; }
+  th:first-child { border-radius: 0 3mm 0 0; } th:last-child { border-radius: 3mm 0 0 0; }
+  tr:nth-child(even) td { background: #fafafb; }
+  .yes { color: var(--green); font-weight: 800; } .no { color: var(--red); font-weight: 800; }
+
+  /* flow diagram */
+  .flow { display: flex; align-items: stretch; gap: 2mm; margin: 4mm 0; break-inside: avoid; }
+  .flow .st { flex: 1; background: var(--card); border-radius: 3.5mm; padding: 3mm; text-align: center; font-size: 10pt; line-height: 1.6; }
+  .flow .st .e { font-size: 18pt; display: block; }
+  .flow .ar { align-self: center; color: var(--sub); font-size: 14pt; }
+
+  /* notification mock */
+  .notifs { background: linear-gradient(160deg, #3b4a7a, #8b5d9c); border-radius: 6mm; padding: 6mm; display: grid; gap: 3mm; break-inside: avoid; }
+  .nt { background: rgba(255,255,255,.88); border-radius: 4mm; padding: 3mm 4mm; display: flex; gap: 3mm; align-items: flex-start; }
+  .nt .ic { width: 9mm; height: 9mm; border-radius: 2.2mm; background: linear-gradient(160deg, #ffd25e, #ffa600); color: #fff;
+            font: 900 6mm/9mm -apple-system, sans-serif; text-align: center; flex: none; }
+  .nt .h { display: flex; justify-content: space-between; font-size: 8.5pt; color: var(--sub); }
+  .nt .ti { font-weight: 700; font-size: 10.5pt; }
+  .nt .bd { font-size: 10pt; color: #333; }
+  .nt .who { font-size: 8.5pt; color: var(--purple); font-weight: 700; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+  .card { background: var(--card); border-radius: 4mm; padding: 4mm; break-inside: avoid; }
+  .card .e { font-size: 20pt; }
+  .card .t { font-weight: 800; display: block; margin: 1mm 0; }
+  .card p { font-size: 10.3pt; margin: 0; line-height: 1.7; }
+  .quote { font-size: 13pt; font-weight: 700; text-align: center; padding: 6mm; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); margin: 6mm 0; }
+  .tight .box { margin: 2mm 0; padding: 3mm 4.5mm; line-height: 1.7; font-size: 10.8pt; }
+  .tight .lead { margin-bottom: 2mm; }
+  .tight .quote { margin: 4mm 0 2mm; padding: 4mm; }
+  .dl { display:none; }
+  @media screen {
+    body { background:#ececf0; padding: 24px 16px 60px; }
+    .dl { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; max-width:820px; margin:0 auto 18px; }
+    .dl a { background:#121214; color:#fff; text-decoration:none; padding:10px 20px; border-radius:99px; font-weight:700; }
+    .dl a.sec { background:#fff; color:#121214; }
+    .cover, section { max-width: 820px; margin: 0 auto 22px; background:#fff; border-radius: 18px; padding: 36px 40px; box-shadow:0 6px 24px rgba(0,0,0,.06); }
+    .cover { height:auto; min-height: 900px; }
+  }
+  @media screen and (max-width: 700px) {
+    body { padding: 12px 16px 40px; font-size: 15px; }
+    .cover, section { padding: 22px 16px; border-radius: 14px; }
+    .cover { min-height: 0; }
+    .cover h1 { font-size: 34px; }
+    .row { flex-direction: column; align-items: center; }
+    .row .txt { width: 100%; }
+    .grid2, .grid3 { grid-template-columns: 1fr; }
+    .toc { columns: 1; }
+    .flow { flex-direction: column; }
+    .flow .ar { transform: rotate(-90deg); }
+    .phone { width: 46vw; max-width: 200px; }
+    .phone.sm { width: 28vw; }
+    table { font-size: 13px; display:block; overflow-x:auto; }
+    h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="dl"><a href="FamCoins_Guide_AR.pdf" download>⬇️ تحميل الدليل PDF</a><a class="sec" href="../">الصفحة الرئيسية</a></div>
+
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="coin">F</div>
+  <h1>FamCoins</h1>
+  <div class="sub">محفظة العائلة – دليل الاستخدام الكامل</div>
+  <div class="tag">عملات للعب داخل العائلة · بدون نقود حقيقية</div>
+  <div class="phones">
+    <div class="phone sm"><img src="shots/wallet_parent.jpg"></div>
+    <div class="phone sm"><img src="shots/chores_kid.jpg"></div>
+    <div class="phone sm"><img src="shots/goals_kid.jpg"></div>
+  </div>
+  <div class="foot">شرح كل الشاشات · خطوة بخطوة · مع علم النفس وراء التطبيق ونصائح للوالدين</div>
+</div>
+
+<!-- ============ TOC ============ -->
+<section>
+  <h2>المحتويات</h2>
+  <div class="toc">
+    <div><span class="n">1</span>ما هو FamCoins؟</div>
+    <div><span class="n">2</span>البداية: اختيار اللغة وإنشاء العائلة</div>
+    <div><span class="n">3</span>دعوة أفراد العائلة</div>
+    <div><span class="n">4</span>الأدوار: الوالدان والأطفال</div>
+    <div><span class="n">5</span>المحفظة (الشاشة الرئيسية)</div>
+    <div><span class="n">6</span>من أين تأتي العملات؟</div>
+    <div><span class="n">7</span>الإرسال والطلب مع بصمة الوجه</div>
+    <div><span class="n">8</span>المهام</div>
+    <div><span class="n">9</span>متجر العائلة</div>
+    <div><span class="n">10</span>ماذا لو لم تكفِ العملات؟</div>
+    <div><span class="n">11</span>أهداف الادخار</div>
+    <div><span class="n">12</span>السجل والتراجع عن الأخطاء</div>
+    <div><span class="n">13</span>الإشعارات</div>
+    <div><span class="n">14</span>إعدادات العائلة واللغة وحذف الحساب</div>
+    <div><span class="n">15</span>ماذا يتعلم الطفل؟</div>
+    <div><span class="n">16</span>علم النفس وراء التطبيق</div>
+    <div><span class="n">17</span>أخطاء نفسية يجب تجنبها</div>
+    <div><span class="n">18</span>نصائح عملية للوالدين حسب العمر</div>
+    <div><span class="n">19</span>الخصوصية والأمان</div>
+    <div><span class="n">20</span>أسئلة شائعة</div>
+  </div>
+  <div class="box tip" style="margin-top:10mm">
+    <span class="t">كيف تقرأ هذا الدليل؟</span>
+    الأقسام 1 إلى 14 تشرح التطبيق شاشة بشاشة. الأقسام 15 إلى 18 تشرح <b>لماذا</b> صُمّم التطبيق بهذه الطريقة وكيف تستخدمه تربوياً.
+    إذا كان وقتك ضيقاً، اقرأ القسم 4 (الأدوار) والقسم 16 (علم النفس) والقسم 18 (النصائح).
+  </div>
+</section>
+
+<!-- ============ 1 ============ -->
+<section>
+  <h2><span class="num">1</span>ما هو FamCoins؟</h2>
+  <p class="lead">FamCoins محفظة عائلية على الآيفون، فيها <b>عملات للعب فقط</b>. لا توجد نقود حقيقية، ولا بطاقات بنكية، ولا مشتريات داخل التطبيق.
+  العملات تتحرك بين أفراد العائلة فقط، والوالدان هما من يضعان القواعد.</p>
+
+  <div class="grid3" style="margin:5mm 0">
+    <div class="card"><div class="e">👨‍👩‍👧‍👦</div><span class="t">للعائلة فقط</span><p>كل عائلة عالم مغلق. لا يرى أحد من خارجها أي شيء.</p></div>
+    <div class="card"><div class="e">🪙</div><span class="t">عملات للعب</span><p>ليس لها قيمة نقدية، ولا تُشترى ولا تُباع ولا تُستبدل بمال.</p></div>
+    <div class="card"><div class="e">🎓</div><span class="t">تعليم مالي</span><p>الكسب والادخار والإنفاق والمشاركة، بتجربة حقيقية بلا خطر.</p></div>
+  </div>
+
+  <h3>الفكرة باختصار</h3>
+  <div class="flow">
+    <div class="st"><span class="e">🧹</span>الطفل ينجز مهمة</div><div class="ar">←</div>
+    <div class="st"><span class="e">✅</span>الوالد يوافق</div><div class="ar">←</div>
+    <div class="st"><span class="e">🪙</span>تصل العملات للمحفظة</div><div class="ar">←</div>
+    <div class="st"><span class="e">🎯</span>يدّخر أو يشتري مكافأة</div><div class="ar">←</div>
+    <div class="st"><span class="e">🎁</span>الوالد يسلّم المكافأة</div>
+  </div>
+
+  <h3>ماذا يوجد في التطبيق؟</h3>
+  <table>
+    <tr><th>الجزء</th><th>ماذا يفعل</th></tr>
+    <tr><td>المحفظة</td><td>الرصيد، الطلبات المعلّقة، أفراد العائلة، وآخر الحركات.</td></tr>
+    <tr><td>إرسال / طلب</td><td>إرسال عملات لأي فرد أو طلبها منه، مع التأكيد ببصمة الوجه.</td></tr>
+    <tr><td>كسب ← المهام</td><td>مهام بمكافأة، لمرة واحدة أو يومية أو أسبوعية.</td></tr>
+    <tr><td>كسب ← المتجر</td><td>مكافآت يضعها الوالدان ويشتريها الأطفال بعملاتهم.</td></tr>
+    <tr><td>كسب ← الأهداف</td><td>حصّالات ادخار لكل فرد مع شريط تقدّم.</td></tr>
+    <tr><td>النشاط</td><td>سجل كامل لكل عملة تحركت، مع إمكانية التراجع للوالدين.</td></tr>
+    <tr><td>العائلة</td><td>الأفراد، رموز الدعوة، الملف الشخصي، الإعدادات، اللغة، حذف الحساب.</td></tr>
+  </table>
+</section>
+
+<!-- ============ 2 ============ -->
+<section>
+  <h2><span class="num">2</span>البداية: اختيار اللغة وإنشاء العائلة</h2>
+  <div class="row">
+    <div class="txt">
+      <h3>الخطوة الأولى: اللغة</h3>
+      <p>أول شاشة تسأل عن اللغة: <b>العربية</b> أو <b>English</b>. يتحول التطبيق كله إلى الاتجاه من اليمين إلى اليسار عند اختيار العربية،
+      وتبقى الأرقام بالشكل الغربي (20 وليس ٢٠) لتكون واضحة للأطفال.</p>
+      <p>اللغة خاصة بكل جهاز: يمكن أن يستخدم الأب العربية والابن الإنجليزية في نفس العائلة، وتصل الإشعارات لكل شخص بلغته.</p>
+      <div class="box tip"><span class="t">تغيير اللغة لاحقاً</span>من تبويب <b>العائلة ← اللغة</b> في أي وقت.</div>
+      <h3>الخطوة الثانية: شاشة الترحيب</h3>
+      <p>زرّان فقط:</p>
+      <ul>
+        <li><b>ابدأ عائلة</b> – لأول شخص (عادةً أحد الوالدين).</li>
+        <li><b>الانضمام برمز</b> – لبقية أفراد العائلة.</li>
+      </ul>
+      <p class="muted">لا يُطلب بريد إلكتروني ولا رقم هاتف ولا كلمة مرور.</p>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/language.jpg"></div><div class="cap">اختيار اللغة</div></div>
+    <div class="fig"><div class="phone"><img src="shots/welcome.jpg"></div><div class="cap">شاشة الترحيب</div></div>
+  </div>
+</section>
+
+<section>
+  <h2 style="font-size:17pt">إنشاء العائلة خطوة بخطوة</h2>
+  <div class="row">
+    <div class="txt">
+      <ol class="steps">
+        <li><b>سمِّ عائلتك</b> – مثل «عائلة النور». يمكن اختيار اقتراح جاهز: العائلة، فريق البيت، فريقنا.</li>
+        <li><b>من أنت؟</b> اكتب اسمك كما سيراه الأطفال (بابا، ماما، أو الاسم الحقيقي)، واختر صورة رمزية ولوناً: حيوانات ورموز مرحة بدل الصور الشخصية.</li>
+        <li>تم! تظهر رسالة «عائلتك جاهزة» وتصبح أنت <b>الوالد</b> في هذه العائلة، ثم <b>افتح محفظتي</b>.</li>
+        <li><b>اسم العملة (اختياري):</b> من «العائلة ← إعدادات العائلة» اختر: عملة، نجمة، جوهرة، نقطة، أو اسماً من اختيارك.</li>
+      </ol>
+      <div class="box psy"><span class="t">🧠 لماذا اسم العملة قابل للتغيير؟</span>
+      عندما يختار الأطفال مع والديهم اسم العملة («نجوم عائلة النور») تصبح العملة <b>شيئاً يخصّهم</b>. هذا الإحساس بالملكية يزيد الاهتمام والالتزام.</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/create.jpg"></div><div class="cap">تسمية العائلة</div></div>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section>
+  <h2><span class="num">3</span>دعوة أفراد العائلة</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/invite.jpg"></div><div class="cap">رمز الدعوة</div></div>
+    <div class="txt">
+      <p>من تبويب <b>العائلة ← رموز الدعوة</b> تظهر شاشة فيها رمز QR ورمز من 6 أحرف.</p>
+      <p>يوجد <b>رمزان مختلفان</b>:</p>
+      <ul>
+        <li><b>رمز الأطفال</b> – من ينضم به يصبح طفلاً.</li>
+        <li><b>رمز الوالدين</b> – من ينضم به يصبح والداً، وله صلاحيات كاملة.</li>
+      </ul>
+      <p>الرمز نفسه هو الذي يحدد الدور، فلا يستطيع الطفل أن يختار أن يكون «والداً».</p>
+      <ol class="steps">
+        <li>اختر «طفل» أو «والد/ة» في أعلى الشاشة.</li>
+        <li>اضغط <b>مشاركة الرمز</b> وأرسله، أو اجعل الطفل يقرأه من شاشتك.</li>
+        <li>على جهاز الطفل: <b>الانضمام برمز</b> ← أدخل الأحرف الستة.</li>
+      </ol>
+      <div class="box warn"><span class="t">مهم</span>لا تشارك <b>رمز الوالدين</b> إلا مع الوالد الآخر. إذا انتشر رمز بالخطأ، استخدم <b>إنشاء رموز جديدة</b> ليتوقف القديم فوراً.</div>
+      <p class="muted">العائلة الواحدة تتسع حتى 12 فرداً.</p>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/join.jpg"></div><div class="cap">إدخال الرمز</div></div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section>
+  <h2><span class="num">4</span>الأدوار: الوالدان والأطفال</h2>
+  <p class="lead">التطبيق مبني على قاعدة بسيطة: <b>الوالدان يضعان القواعد، والأطفال يلعبون ضمنها.</b></p>
+  <table>
+    <tr><th>ماذا يمكن أن يفعل؟</th><th>الوالد/ة</th><th>الطفل</th></tr>
+    <tr><td>إنشاء عملات جديدة</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>إرسال عملات من محفظته</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>طلب عملات من أي فرد</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>إضافة المهام وتعديلها</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>إعلان إنجاز مهمة</td><td class="muted">—</td><td class="yes">✓</td></tr>
+    <tr><td>الموافقة على المهام أو رفضها</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>إضافة مكافآت للمتجر</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>شراء مكافأة من المتجر</td><td class="muted">—</td><td class="yes">✓</td></tr>
+    <tr><td>تأكيد تسليم المكافأة أو استرجاعها</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>إنشاء أهداف ادخار</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>رؤية سجل العائلة كاملاً</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>التراجع عن عملية خاطئة</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>تغيير اسم العائلة والعملة والرموز</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>إزالة فرد من العائلة</td><td class="yes">✓</td><td class="no">✗</td></tr>
+  </table>
+  <div class="box psy"><span class="t">🧠 لماذا هذا التقسيم؟</span>
+  الطفل يحتاج إلى <b>حرية حقيقية</b> (يقرر متى يدّخر ومتى يشتري) داخل <b>حدود واضحة</b> (لا يصنع المال من لا شيء).
+  هذا ما يسميه علماء التربية «الأسلوب الحازم الدافئ»: قواعد ثابتة مع مساحة للاختيار.</div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section>
+  <h2><span class="num">5</span>المحفظة (الشاشة الرئيسية)</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/wallet_parent.jpg"></div><div class="cap">محفظة الوالد</div></div>
+    <div class="txt">
+      <p>من الأعلى إلى الأسفل:</p>
+      <ul>
+        <li><b>الرصيد</b> بخط كبير وواضح.</li>
+        <li><b>الطلبات</b> – من يطلب منك عملات، مع زرّي <b>دفع</b> و<b>رفض</b>.</li>
+        <li><b>بانتظارك</b> – عند الوالد: مهام ومشتريات تنتظر الموافقة. عند الطفل: مهام متاحة لكسب العملات.</li>
+        <li><b>أفراد العائلة</b> مع رصيد كل شخص، وزر <b>دعوة</b>.</li>
+        <li><b>آخر النشاطات</b> – آخر الحركات مع زر «عرض الكل».</li>
+        <li>زر <b>+</b> العائم يفتح: <b>إرسال</b> أو <b>طلب</b>.</li>
+      </ul>
+      <p>في الأسفل أربعة تبويبات: العائلة، كسب، المحفظة، النشاط.</p>
+      <div class="box psy"><span class="t">🧠 لماذا الرصيد كبير جداً؟</span>
+      المال عند الطفل فكرة مجردة. الرقم الكبير والعملة الذهبية يحوّلانه إلى شيء <b>ملموس يُرى</b>. الأطفال يتعلمون بالمحسوس قبل المجرد (بياجيه).</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/wallet_kid.jpg"></div><div class="cap">محفظة الطفل</div></div>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section>
+  <h2><span class="num">6</span>من أين تأتي العملات؟</h2>
+  <p class="lead">العملات لا تظهر من العدم. هناك <b>مصدر واحد</b> فقط للعملات الجديدة: <b>الوالدان</b>.</p>
+  <div class="grid2">
+    <div class="card"><div class="e">✨</div><span class="t">عملات جديدة (من الوالدين فقط)</span>
+      <p>عند الإرسال يختار الوالد المصدر: «محفظتي» أو «عملات جديدة – مصروف أو مكافأة». العملات الجديدة تذهب مباشرة إلى محفظة الطفل،
+      ولا ينقص رصيد الوالد. هكذا يُعطى المصروف الأسبوعي مثلاً.</p></div>
+    <div class="card"><div class="e">🧹</div><span class="t">مكافأة مهمة</span>
+      <p>عندما يوافق الوالد على مهمة منجزة، تُنشأ عملات المكافأة تلقائياً وتدخل محفظة الطفل.</p></div>
+    <div class="card"><div class="e">🤝</div><span class="t">إرسال من فرد لآخر</span>
+      <p>الأخ يرسل لأخته، والطفل يرد عملات لوالده. هذه العملات <b>تنتقل</b> فقط: ما يخرج من محفظة يدخل في أخرى.</p></div>
+    <div class="card"><div class="e">↩️</div><span class="t">الاسترجاع</span>
+      <p>إذا استرجع الوالد مكافأة لم تُسلَّم، تعود قيمتها للطفل.</p></div>
+  </div>
+  <div class="box psy" style="margin-top:5mm"><span class="t">🧠 الدرس الخفي</span>
+  الطفل يرى أن رصيد والده <b>لا يزيد</b> بضغطة زر لنفسه، وأن المال يأتي من جهد (مهمة) أو من قرار مسؤول (مصروف).
+  هذا يبني فهماً صحياً: <b>المال له مصدر، وليس سحراً</b>.</div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section>
+  <h2><span class="num">7</span>الإرسال والطلب مع بصمة الوجه</h2>
+  <div class="shots">
+    <div class="fig"><div class="phone sm"><img src="shots/send.jpg"></div><div class="cap">١. اختيار الشخص</div></div>
+    <div class="fig"><div class="phone sm"><img src="shots/send_amount.jpg"></div><div class="cap">٢. المبلغ والمصدر</div></div>
+    <div class="fig"><div class="phone sm"><img src="shots/request_kid.jpg"></div><div class="cap">طلب من الطفل</div></div>
+  </div>
+  <h3>الإرسال</h3>
+  <ol class="steps">
+    <li>اضغط <b>+</b> ثم <b>إرسال</b>، واختر الشخص.</li>
+    <li>اكتب المبلغ بلوحة الأرقام. يظهر «الحد الأقصى» حسب رصيدك.</li>
+    <li>الوالد يختار المصدر: <b>محفظتي</b> أو <b>عملات جديدة ✨</b>.</li>
+    <li>أضف ملاحظة (مثل: «شكراً لمساعدتك 🙏») وراجع الاسم.</li>
+    <li>اضغط <b>تأكيد</b> ← تطلب <b>بصمة الوجه</b> أو رمز الجهاز ← «تم الإرسال!».</li>
+  </ol>
+  <h3>الطلب</h3>
+  <p>نفس الخطوات مع <b>طلب</b>: اختر الشخص، المبلغ، والسبب. يصل الطلب للطرف الآخر مع إشعار فوري، فيدفع أو يرفض. يمكنك إلغاء طلبك ما دام معلّقاً.</p>
+  <div class="box psy"><span class="t">🧠 لماذا بصمة الوجه للعملات «اللعب»؟</span>
+  لأن الهدف تدريب <b>عادة</b> ستحتاجها مع المال الحقيقي: التوقف لحظة، مراجعة الاسم والمبلغ، ثم التأكيد. الرسالة على الشاشة تقول: «العملات نقود عائلية للعب. تأكد من الاسم قبل التأكيد».</div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section>
+  <h2><span class="num">8</span>المهام</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/chores_parent.jpg"></div><div class="cap">المهام عند الوالد</div></div>
+    <div class="txt">
+      <h3>عند الوالد</h3>
+      <ul>
+        <li><b>إضافة +</b>: اسم المهمة، رمز تعبيري، المكافأة، لمن (طفل محدد أو أي طفل)، والتكرار: <b>مرة واحدة</b> أو <b>يومياً</b> أو <b>أسبوعياً</b>.</li>
+        <li>في الأعلى قسم <b>بانتظارك</b>: «أنجزها عمر» مع زرّي <b>موافقة ودفع</b> أو <b>ليس بعد</b>.</li>
+      </ul>
+      <h3>عند الطفل</h3>
+      <ul>
+        <li>يرى المهام المتاحة له والمكافأة.</li>
+        <li>بعد الإنجاز يضغط <b>«أنجزتها!»</b> فيصل إشعار للوالدين.</li>
+        <li>المهمة اليومية تُعلَن مرة واحدة في اليوم، والأسبوعية مرة في الأسبوع.</li>
+      </ul>
+      <div class="box tip"><span class="t">«ليس بعد» وليس «مرفوض»</span>
+      اخترنا كلمة «ليس بعد» عمداً: هي تقول للطفل «يمكنك أن تحاول مرة أخرى» بدل الإحساس بالفشل.</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/chores_kid.jpg"></div><div class="cap">المهام عند الطفل</div></div>
+  </div>
+  <div class="flow">
+    <div class="st"><span class="e">📝</span>الوالد يضيف مهمة</div><div class="ar">←</div>
+    <div class="st"><span class="e">🛏️</span>الطفل ينجزها ويضغط «أنجزتها!»</div><div class="ar">←</div>
+    <div class="st"><span class="e">🔔</span>إشعار للوالدين</div><div class="ar">←</div>
+    <div class="st"><span class="e">✅</span>موافقة ودفع / ليس بعد</div><div class="ar">←</div>
+    <div class="st"><span class="e">⭐</span>إشعار للطفل والعملات في محفظته</div>
+  </div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section>
+  <h2><span class="num">9</span>متجر العائلة</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/shop_parent.jpg"></div><div class="cap">المتجر عند الوالد</div></div>
+    <div class="txt">
+      <p>المتجر هو المكان الذي تتحول فيه العملات إلى شيء حقيقي يحبه الطفل.</p>
+      <h3>الوالد</h3>
+      <ul>
+        <li>يضيف مكافآت بسعر: «30 دقيقة أمام الشاشة»، «اختيار العشاء»، «السهر لوقت متأخر»، «نزهة إلى الحديقة».</li>
+        <li>عندما يشتري الطفل، تظهر المكافأة في <b>بانتظار التسليم</b>.</li>
+        <li>بعد التسليم الفعلي يضغط <b>تم التسليم ✓</b>، أو <b>استرجاع</b> فتعود العملات للطفل.</li>
+      </ul>
+      <h3>الطفل</h3>
+      <ul>
+        <li>يرى كل مكافأة وسعرها.</li>
+        <li>إذا كان رصيده كافياً يظهر زر <b>شراء</b>. يرى قبل التأكيد: «سيتبقى لك كذا، وسيسلّمها لك أحد الوالدين».</li>
+        <li>بعد التسليم يصله إشعار: «🎁 استمتع بـ…!»</li>
+      </ul>
+      <div class="box psy"><span class="t">🧠 لماذا لا تُسلَّم المكافأة تلقائياً؟</span>
+      لأن المكافآت حقيقية (وقت، نزهة، حلوى) والوالد يحتاج أن يختار التوقيت المناسب. كما أن لحظة التسليم وجهاً لوجه تقوّي العلاقة أكثر من رسالة على الشاشة.</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/shop_kid.jpg"></div><div class="cap">المتجر عند الطفل</div></div>
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section>
+  <h2><span class="num">10</span>ماذا لو لم تكفِ العملات؟</h2>
+  <p class="lead">مثال: يريد عمر «30 دقيقة أمام الشاشة» بسعر 30 عملة، ورصيده 15 فقط.</p>
+  <div class="box"><span class="t">ماذا يرى؟</span>
+  بدل زر «شراء» تظهر عبارة <b>«تحتاج 15»</b> على بطاقة المكافأة، ولا يمكن الشراء. حتى لو حاول أحد التحايل، الخادم يرفض أي شراء بدون رصيد كافٍ. <b>لا ديون في FamCoins.</b></div>
+
+  <h3>الطرق المتاحة للطفل</h3>
+  <div class="grid2">
+    <div class="card"><div class="e">🧹</div><span class="t">١. ينجز مهام</span><p>يفتح «كسب ← المهام»، ينجز مهمة ويضغط «أنجزتها!»، وبعد الموافقة تصل العملات.</p></div>
+    <div class="card"><div class="e">🙋</div><span class="t">٢. يطلب من والديه</span><p>«+ ← طلب»، يختار بابا أو ماما، المبلغ، ويكتب السبب: «لوقت الشاشة». الوالد يدفع أو يرفض.</p></div>
+    <div class="card"><div class="e">🎯</div><span class="t">٣. يدّخر</span><p>ينشئ هدفاً «وقت الشاشة» بقيمة 30 ويضع فيه العملات تدريجياً حتى يكتمل.</p></div>
+    <div class="card"><div class="e">🤝</div><span class="t">٤. يطلب من أخيه</span><p>الإخوة يستطيعون إرسال العملات لبعضهم، أو التفاوض: «ساعدني وأرد لك لاحقاً».</p></div>
+  </div>
+
+  <div class="box psy" style="margin-top:5mm"><span class="t">🧠 لماذا لا يوجد «اشترِ الآن وادفع لاحقاً»؟</span>
+  أهم مهارة مالية يتعلمها الطفل هي <b>الانتظار</b>. عبارة «تحتاج 15» ليست عقاباً، بل هدف واضح وقابل للقياس. عندما يجمع العملات بنفسه ثم يشتري،
+  يشعر بالإنجاز أكثر بكثير مما لو حصل على المكافأة فوراً.</div>
+  <div class="box tip"><span class="t">نصيحة للوالدين</span>
+  عندما يطلب الطفل عملات «لأنه يريد شيئاً الآن»، جرّب أن تقترح عليه مهمة بدل الدفع المباشر: «أستطيع أن أعطيك 15، أو تنظّف غرفتك وتكسبها بنفسك. ماذا تختار؟» الاختيار نفسه درس.</div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section>
+  <h2><span class="num">11</span>أهداف الادخار</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/goals_kid.jpg"></div><div class="cap">أهداف الطفل</div></div>
+    <div class="txt">
+      <ul>
+        <li><b>جديد +</b>: اسم الهدف، رمز تعبيري، والمبلغ المطلوب (مثل «دراجة جديدة 🚲 – 300»).</li>
+        <li><b>أضف عملات</b> لنقلها من المحفظة إلى الحصّالة، و<b>سحب</b> لإرجاعها.</li>
+        <li>شريط ذهبي يمتلئ مع كل إضافة، ويظهر «باقٍ 180».</li>
+        <li>لكل شخص حتى 5 أهداف نشطة في نفس الوقت.</li>
+      </ul>
+      <h3>أهداف العائلة</h3>
+      <p>كل فرد يرى أهداف الآخرين في قسم <b>أهداف العائلة</b> مع نسبة التقدم، لكن <b>لا يستطيع</b> أحد أن يضع عملات في هدف غيره أو يسحب منه.</p>
+      <div class="box psy"><span class="t">🧠 لماذا يرى الابن هدف أبيه؟</span>
+      <ul style="margin:0">
+        <li><b>القدوة:</b> عندما يرى الطفل والده يدّخر لرحلة العائلة ويصبر أسابيع، يتعلم أن الادخار طبيعي للكبار أيضاً (التعلم بالملاحظة – باندورا).</li>
+        <li><b>روح الفريق:</b> «بابا يدّخر، سارة تدّخر، وأنا أدّخر».</li>
+        <li><b>بداية حوار:</b> «بابا، لماذا تدّخر؟» ← حديث طبيعي عن الأولويات.</li>
+        <li><b>الصبر طبيعي:</b> الأشياء الكبيرة تحتاج وقتاً أطول.</li>
+      </ul></div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/goals_parent.jpg"></div><div class="cap">أهداف الوالد</div></div>
+  </div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section>
+  <h2><span class="num">12</span>السجل والتراجع عن الأخطاء</h2>
+  <div class="row">
+    <div class="txt">
+      <p>تبويب <b>النشاط</b> يعرض كل عملة تحركت في العائلة، مرتبة حسب اليوم: اليوم، أمس، الخميس…</p>
+      <ul>
+        <li>لكل حركة: من؟ إلى من؟ كم؟ الملاحظة، والوقت.</li>
+        <li>فلاتر في الأعلى: <b>الجميع</b> أو شخص محدد (أنا، ماما، سارة، عمر).</li>
+        <li>اللون الأخضر للداخل، والسالب للخارج.</li>
+      </ul>
+      <h3>التراجع (للوالدين فقط)</h3>
+      <p>إذا أُرسلت عملات بالخطأ، يستطيع الوالد فتح العملية والضغط على <b>تراجع</b>. التطبيق <b>لا يحذف</b> شيئاً من السجل:
+      يضع علامة على العملية الأصلية ويضيف حركة جديدة تعيد العملات. إذا كان المستلم قد صرفها، لا يمكن التراجع.</p>
+      <div class="box psy"><span class="t">🧠 لماذا لا يُحذف أي شيء؟</span>
+      الشفافية تبني الثقة. الطفل يعرف أن السجل صادق ولا يتغير خلسة، وأن الخطأ يُصلَح علناً. هذا درس في <b>الأمانة والمحاسبة</b>.</div>
+      <div class="box tip"><span class="t">نشاط مقترح</span>
+      مرة في الأسبوع، افتحوا السجل معاً: «من أين جاءت عملاتك هذا الأسبوع؟ وعلى ماذا صرفتها؟ هل أنت راضٍ؟»</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/activity.jpg"></div><div class="cap">سجل النشاط</div></div>
+  </div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section>
+  <h2><span class="num">13</span>الإشعارات</h2>
+  <p>تصل الإشعارات فوراً على شاشة القفل، مثل رسائل الواتساب، <b>بلغة كل شخص</b>. الضغط على الإشعار يفتح الصفحة المناسبة مباشرة.</p>
+  <div class="row">
+    <div class="notifs" style="flex:1">
+      <div class="nt"><div class="ic">F</div><div style="flex:1"><div class="h"><span>FamCoins</span><span>الآن</span></div>
+        <div class="ti">💰 طلب من عمر: 20 عملة</div><div class="bd">لوقت الشاشة · اضغط للدفع أو الرفض</div><div class="who">← يصل للوالد</div></div></div>
+      <div class="nt"><div class="ic">F</div><div style="flex:1"><div class="h"><span>FamCoins</span><span>منذ دقيقتين</span></div>
+        <div class="ti">🛏️ مهمة منجزة من عمر: «رتّب سريرك»</div><div class="bd">وافق لدفع 5 عملة</div><div class="who">← يصل للوالدين</div></div></div>
+      <div class="nt"><div class="ic">F</div><div style="flex:1"><div class="h"><span>FamCoins</span><span>منذ 5 دقائق</span></div>
+        <div class="ti">⭐ تمت الموافقة على مهمتك! +5 عملة</div><div class="bd">🛏️ رتّب سريرك</div><div class="who">← يصل للطفل</div></div></div>
+      <div class="nt"><div class="ic">F</div><div style="flex:1"><div class="h"><span>FamCoins</span><span>منذ 10 دقائق</span></div>
+        <div class="ti">🛍️ عملية شراء من سارة: 📱 30 دقيقة أمام الشاشة</div><div class="bd">اضغط عند تسليمها (30 عملة)</div><div class="who">← يصل للوالدين</div></div></div>
+      <div class="nt"><div class="ic">F</div><div style="flex:1"><div class="h"><span>FamCoins</span><span>أمس</span></div>
+        <div class="ti">🪙 وصلتك 20 عملة من بابا</div><div class="bd">مصروف الأسبوع</div><div class="who">← يصل للمستلم</div></div></div>
+    </div>
+    <div class="txt" style="flex:.9">
+      <h3>متى يصل إشعار؟</h3>
+      <table>
+        <tr><th>الحدث</th><th>من يُشعَر</th></tr>
+        <tr><td>إرسال عملات</td><td>المستلم</td></tr>
+        <tr><td>طلب عملات</td><td>الشخص المطلوب منه</td></tr>
+        <tr><td>دفع الطلب أو رفضه</td><td>صاحب الطلب</td></tr>
+        <tr><td>إعلان إنجاز مهمة</td><td>كل الوالدين</td></tr>
+        <tr><td>الموافقة أو «ليس بعد»</td><td>الطفل</td></tr>
+        <tr><td>شراء مكافأة</td><td>كل الوالدين</td></tr>
+        <tr><td>التسليم أو الاسترجاع</td><td>الطفل</td></tr>
+      </table>
+      <div class="box tip"><span class="t">صياغة محايدة</span>العبارات العربية كُتبت لتناسب الأب والأم معاً: «وصلتك 20 عملة من بابا».</div>
+      <p class="muted">يجب السماح بالإشعارات عند أول فتح للتطبيق، أو من إعدادات الآيفون.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section>
+  <h2><span class="num">14</span>إعدادات العائلة واللغة وحذف الحساب</h2>
+  <div class="row">
+    <div class="fig"><div class="phone"><img src="shots/family.jpg"></div><div class="cap">تبويب العائلة</div></div>
+    <div class="txt">
+      <h3>تبويب العائلة</h3>
+      <ul>
+        <li>قائمة الأفراد مع الدور والرصيد. الوالد يستطيع إزالة فرد.</li>
+        <li><b>دعوة فرد من العائلة</b> و<b>رموز الدعوة</b>.</li>
+        <li><b>تعديل ملفي</b>: الاسم والصورة الرمزية واللون.</li>
+        <li><b>إعدادات العائلة</b> (للوالدين): اسم العائلة واسم العملة.</li>
+        <li><b>اللغة</b>: العربية أو English.</li>
+      </ul>
+      <h3>حذف الحساب والبيانات</h3>
+      <p>في أسفل التبويب: <b>«حذف حسابي وبياناتي»</b>. يظهر تحذير واضح قبل الحذف:</p>
+      <ul>
+        <li>للطفل أو لوالد ليس الوحيد: تُحذف محفظته وعملاته وأهدافه وحسابه نهائياً.</li>
+        <li>إذا كنت <b>الوالد الوحيد</b>: تُحذف العائلة كاملة بكل محافظها ومهامها ومكافآتها وسجلها.</li>
+      </ul>
+      <div class="box warn"><span class="t">انتبه</span>الحذف لا يمكن التراجع عنه. كذلك، حذف التطبيق من الهاتف يُفقد محفظة ذلك الجهاز، لأن الحساب مرتبط بالجهاز وليس ببريد إلكتروني.</div>
+    </div>
+    <div class="fig"><div class="phone"><img src="shots/settings.jpg"></div><div class="cap">إعدادات العائلة</div></div>
+  </div>
+</section>
+
+<!-- ============ 15 ============ -->
+<section>
+  <h2><span class="num">15</span>ماذا يتعلم الطفل؟</h2>
+  <div class="grid2">
+    <div class="card"><div class="e">💪</div><span class="t">١. المال يُكسَب</span><p>العملات تأتي بعد إنجاز مهمة وموافقة الوالد. الجهد يسبق المكافأة، والعمل يجب أن يُنجز جيداً ليُحسب.</p></div>
+    <div class="card"><div class="e">🎯</div><span class="t">٢. الادخار من أجل هدف</span><p>يحدد هدفاً ويرى الشريط يمتلئ. يتعلم الصبر والتخطيط وتأجيل المتعة الصغيرة من أجل شيء أكبر.</p></div>
+    <div class="card"><div class="e">🛍️</div><span class="t">٣. الإنفاق اختيار</span><p>لكل مكافأة سعر، وما يُصرف يذهب. يتعلم المقارنة والتفكير قبل الشراء وتحمّل نتيجة قراره.</p></div>
+    <div class="card"><div class="e">🙋</div><span class="t">٤. الطلب بأدب وقبول «لا»</span><p>يطلب ويشرح السبب. الوالد قد يدفع أو يرفض. يتعلم الإقناع، وأن «لا» جواب طبيعي.</p></div>
+    <div class="card"><div class="e">🤝</div><span class="t">٥. المشاركة والكرم</span><p>يرسل عملات لإخوته أو والديه: هدية، مساعدة، أو ردّ دين.</p></div>
+    <div class="card"><div class="e">📒</div><span class="t">٦. تتبّع المال</span><p>السجل يعرض كل حركة دخولاً وخروجاً. يعرف أين ذهبت عملاته ويتحقق من رصيده قبل الصرف.</p></div>
+    <div class="card"><div class="e">🔐</div><span class="t">٧. المسؤولية والحذر</span><p>كل إرسال يحتاج بصمة الوجه ومراجعة الاسم. إرسال المال أمر جدّي والأخطاء لها ثمن.</p></div>
+    <div class="card"><div class="e">🏦</div><span class="t">٨. للمال مصدر</span><p>الوالدان فقط يُنشئان العملات. المال لا يُصنع بضغطة زر.</p></div>
+  </div>
+  <div class="quote">FamCoins يجعل الطفل يتدرّب على الكسب والادخار والإنفاق والمشاركة والتتبّع بعملات للعب وبلا أي خطر، والوالدان يرشدانه في كل خطوة.</div>
+</section>
+
+<!-- ============ 16 ============ -->
+<section>
+  <h2><span class="num">16</span>علم النفس وراء التطبيق</h2>
+  <p class="lead">كل قرار في تصميم FamCoins مبني على مبدأ معروف في علم النفس التربوي. هنا نشرح أهمها بلغة بسيطة.</p>
+
+  <div class="box psy avoid"><span class="t">١. التعزيز الإيجابي (سكينر)</span>
+  السلوك الذي يتبعه شيء محبوب يتكرر. الطفل يرتب سريره ← يحصل على عملات ← يرغب في تكرار ذلك.
+  <b>في التطبيق:</b> الموافقة على المهمة + إشعار «⭐ تمت الموافقة!» + الرصيد يرتفع أمام عينيه = تعزيز فوري وواضح.
+  <br><b>نصيحة:</b> وافق على المهام بسرعة. التعزيز الذي يتأخر أياماً يفقد أثره.</div>
+
+  <div class="box psy avoid"><span class="t">٢. تأجيل الإشباع (تجربة المارشميلو)</span>
+  في تجربة شهيرة بجامعة ستانفورد، الأطفال الذين استطاعوا الانتظار للحصول على مكافأة أكبر حققوا نتائج أفضل لاحقاً.
+  الأبحاث الحديثة أضافت أمراً مهماً: <b>الثقة</b>. الأطفال ينتظرون أكثر عندما يثقون أن الوعد سيتحقق.
+  <b>في التطبيق:</b> الأهداف وشريط التقدم يحوّلان الانتظار إلى شيء مرئي. والسجل الشفاف وتسليم المكافآت بانتظام يبنيان الثقة التي تجعل الانتظار ممكناً.</div>
+
+  <div class="box psy avoid"><span class="t">٣. من المحسوس إلى المجرد (بياجيه)</span>
+  الطفل قبل سن 11 تقريباً يفكر بالأشياء الملموسة. «المال» و«الادخار» أفكار مجردة.
+  <b>في التطبيق:</b> عملة ذهبية، رقم كبير، حصّالة تمتلئ، رمز تعبيري لكل مهمة ومكافأة. كل فكرة مجردة لها صورة.</div>
+
+  <div class="box psy avoid"><span class="t">٤. الحسابات الذهنية والحصّالات (ثالر)</span>
+  الناس يتعاملون مع المال بشكل مختلف حسب «الوعاء» الذي وضعوه فيه. العملات داخل هدف «الدراجة» يصعب صرفها على حلوى.
+  <b>في التطبيق:</b> نقل العملات إلى هدف يحميها من الإنفاق العشوائي، مع بقاء حرية السحب. هذا تدريب مبكر على فصل «مال الصرف» عن «مال الادخار».</div>
+
+  <div class="box psy avoid"><span class="t">٥. نظرية تقرير المصير (ديسي ورايان)</span>
+  الدافع الداخلي يحتاج ثلاثة أشياء: <b>الاستقلالية</b> (أنا أختار)، <b>الكفاءة</b> (أنا قادر)، و<b>الانتماء</b> (أنا جزء من مجموعة).
+  <ul style="margin:1mm 0 0">
+    <li><b>الاستقلالية:</b> الطفل يقرر متى يدّخر، وماذا يشتري، ولمن يرسل.</li>
+    <li><b>الكفاءة:</b> أهداف واضحة («تحتاج 15») ونجاحات صغيرة متكررة.</li>
+    <li><b>الانتماء:</b> العائلة كلها في نفس التطبيق، بأسماء مثل «فريق البيت».</li>
+  </ul></div>
+</section>
+
+<section class="tight">
+  <div class="box psy avoid"><span class="t">٦. التعلم بالملاحظة (باندورا)</span>
+  الأطفال يقلدون ما يرون أكثر مما يسمعون. لهذا يرى الطفل أهداف والديه وتقدمهم، ويرى السجل الذي يشمل الجميع.
+  عندما يرى والده يدّخر ويصبر ويلتزم بالقواعد نفسها، يتعلم أكثر من أي نصيحة.</div>
+
+  <div class="box psy avoid"><span class="t">٧. النفور من الخسارة (كانيمان وتفرسكي)</span>
+  ألم خسارة شيء أقوى من فرحة كسب مثله. الطفل يشعر بذلك عندما يرى رصيده ينقص بعد الشراء.
+  <b>في التطبيق:</b> قبل الشراء يرى «سيتبقى لك كذا». هذه اللحظة الصغيرة تجعله يفكر: هل تستحق؟ لهذا أيضاً لا نستخدم العقوبات بخصم العملات، لأن الخصم مؤلم ويُضعف الحماس.</div>
+
+  <div class="box psy avoid"><span class="t">٨. عقلية النمو (كارول دويك)</span>
+  عبارة «ليس بعد» بدل «مرفوض» تزرع فكرة أن القدرة تنمو بالمحاولة. الطفل لا «فشل»، بل لم ينتهِ «بعد».</div>
+
+  <div class="box psy avoid"><span class="t">٩. الفشل الآمن</span>
+  أفضل وقت لارتكاب خطأ مالي هو عندما يكون الثمن صغيراً. إذا صرف الطفل كل عملاته على شيء ثم ندم، فقد تعلم درساً حقيقياً بلا ضرر حقيقي.
+  <b>نصيحة:</b> لا تنقذه فوراً. اسأله: «ماذا ستفعل في المرة القادمة؟»</div>
+
+  <div class="box psy avoid"><span class="t">١٠. التكلفة الذهنية للتحقق</span>
+  بصمة الوجه قبل الإرسال تضيف «احتكاكاً» مقصوداً: ثانية واحدة للتفكير. هذه عادة ستحمي الطفل مستقبلاً من الاحتيال والقرارات المتسرعة.</div>
+
+  <h3>كيف تجتمع هذه المبادئ؟</h3>
+  <table>
+    <tr><th>الميزة</th><th>المبدأ النفسي</th><th>المهارة</th></tr>
+    <tr><td>المهام والموافقة</td><td>التعزيز الإيجابي</td><td>الجهد ← المكافأة</td></tr>
+    <tr><td>الأهداف وشريط التقدم</td><td>تأجيل الإشباع، الحسابات الذهنية</td><td>الادخار والصبر</td></tr>
+    <tr><td>«تحتاج 15»</td><td>الأهداف الواضحة، الكفاءة</td><td>التخطيط</td></tr>
+    <tr><td>«سيتبقى لك…»</td><td>النفور من الخسارة</td><td>التفكير قبل الشراء</td></tr>
+    <tr><td>الطلب والرفض</td><td>الاستقلالية</td><td>الإقناع وقبول «لا»</td></tr>
+    <tr><td>أهداف العائلة المرئية</td><td>التعلم بالملاحظة، الانتماء</td><td>القدوة والعمل الجماعي</td></tr>
+    <tr><td>السجل والتراجع العلني</td><td>الثقة والشفافية</td><td>الأمانة والمحاسبة</td></tr>
+    <tr><td>بصمة الوجه</td><td>الاحتكاك المقصود</td><td>الحذر والمسؤولية</td></tr>
+    <tr><td>«ليس بعد»</td><td>عقلية النمو</td><td>المثابرة</td></tr>
+  </table>
+</section>
+
+<!-- ============ 17 ============ -->
+<section class="tight">
+  <h2><span class="num">17</span>أخطاء نفسية يجب تجنبها</h2>
+  <p class="lead">المكافآت أداة قوية، وأي أداة قوية يمكن أن تُستخدم بشكل خاطئ.</p>
+
+  <div class="box warn avoid"><span class="t">❌ الدفع مقابل كل شيء (أثر التبرير المفرط)</span>
+  عندما نكافئ الطفل على شيء يحبه أصلاً (القراءة، الرسم، مساعدة أخيه من تلقاء نفسه) قد يفقد متعته الداخلية ويبدأ يسأل: «كم ستعطيني؟».
+  <br><b>الحل:</b> ضع في المهام الأعمال الإضافية فقط. أما الواجبات الأساسية والسلوك الطيب فيُشكَر عليها بالكلام والحب، لا بالعملات.</div>
+
+  <div class="box warn avoid"><span class="t">❌ خصم العملات كعقوبة</span>
+  التطبيق لا يحتوي على «غرامات» عمداً. الخصم يربط المال بالخوف والعقاب ويضعف الثقة في النظام. استخدم التراجع فقط لتصحيح خطأ، لا للعقاب.</div>
+
+  <div class="box warn avoid"><span class="t">❌ عدم تسليم المكافآت</span>
+  إذا اشترى الطفل «نزهة» ولم تحدث، تنهار الثقة وينهار معها الصبر (تذكر تجربة المارشميلو). سلّم ما يُشترى، أو استرجع العملات فوراً مع الشرح.</div>
+
+  <div class="box warn avoid"><span class="t">❌ تضخم الأسعار والمكافآت</span>
+  إذا كانت المهام تعطي عملات كثيرة جداً، يفقد كل شيء قيمته. وإذا كانت الأسعار عالية جداً، يستسلم الطفل. ابدأ صغيراً واضبط تدريجياً.</div>
+
+  <div class="box warn avoid"><span class="t">❌ المقارنة بين الإخوة</span>
+  «انظر، سارة عندها 135 وأنت 80!» تحوّل التطبيق إلى منافسة مؤلمة. الأرصدة مرئية للشفافية، لا للمقارنة. امدح تقدّم كل طفل مقارنة بنفسه.</div>
+
+  <div class="box warn avoid"><span class="t">❌ الإنقاذ الدائم</span>
+  دفع كل طلب فوراً يُفقد الطفل فرصة تعلم الانتظار. ودفع ما صرفه بعد أن ندم يلغي الدرس. الرفض أحياناً، بلطف، جزء من التعليم.</div>
+
+  <div class="box good avoid"><span class="t">✓ القاعدة الذهبية</span>
+  <b>العملات تُكافئ الجهد الإضافي، والحب يُكافئ كل شيء.</b> التطبيق أداة لتعليم المال، وليس بديلاً عن الحوار والعاطفة.</div>
+</section>
+
+<!-- ============ 18 ============ -->
+<section>
+  <h2><span class="num">18</span>نصائح عملية للوالدين حسب العمر</h2>
+  <table>
+    <tr><th>العمر</th><th>ما يناسبه</th><th>أمثلة</th></tr>
+    <tr><td><b>4 – 6 سنوات</b></td><td>مهام بسيطة جداً، مكافآت صغيرة وسريعة، والوالد يمسك الهاتف معه.</td><td>رتّب ألعابك (+3)، ملصق أو قصة إضافية (10)</td></tr>
+    <tr><td><b>7 – 9 سنوات</b></td><td>هدف ادخار واحد قصير (أسبوع إلى أسبوعين)، مهام يومية، يبدأ بالطلب بنفسه.</td><td>رتّب سريرك يومياً (+5)، 30 دقيقة شاشة (30)</td></tr>
+    <tr><td><b>10 – 12 سنة</b></td><td>أهداف أطول (شهر)، مهام أسبوعية أكبر، مراجعة السجل معاً، التفاوض على الأسعار.</td><td>اغسل السيارة (+50)، اختيار العشاء (60)، دراجة (300)</td></tr>
+    <tr><td><b>13 سنة فأكثر</b></td><td>مصروف أسبوعي ثابت عبر «عملات جديدة»، ومسؤولية كاملة عن الإنفاق والادخار.</td><td>مصروف (+100 أسبوعياً)، الخروج مع الأصدقاء (150)</td></tr>
+  </table>
+
+  <h3>خطة البداية في أسبوعها الأول</h3>
+  <ol class="steps">
+    <li><b>اجتماع عائلي قصير:</b> اشرحوا الفكرة، واختاروا اسم العملة معاً.</li>
+    <li><b>3 إلى 5 مهام فقط</b> في البداية، واضحة وسهلة القياس.</li>
+    <li><b>4 مكافآت</b> في المتجر: اثنتان رخيصتان (فرحة سريعة) واثنتان أغلى (تحتاج ادخاراً).</li>
+    <li><b>هدف ادخار واحد</b> لكل طفل يختاره بنفسه.</li>
+    <li><b>وافق على المهام في نفس اليوم</b> وسلّم المكافآت في وقتها.</li>
+    <li><b>مراجعة أسبوعية</b> لخمس دقائق: ماذا كسبنا؟ ماذا صرفنا؟ هل نعدّل الأسعار؟</li>
+  </ol>
+
+  <div class="grid2">
+    <div class="box tip"><span class="t">قاعدة تسعير بسيطة</span>
+    اجعل المكافأة الرخيصة تساوي مهمتين تقريباً، والمكافأة الكبيرة تحتاج أسبوعاً أو أسبوعين من الادخار.</div>
+    <div class="box tip"><span class="t">كن قدوة</span>
+    أنشئ هدفاً خاصاً بك يراه الأطفال، مثل «رحلة العائلة 🎡»، وتحدث عنه.</div>
+  </div>
+</section>
+
+<!-- ============ 19 ============ -->
+<section>
+  <h2><span class="num">19</span>الخصوصية والأمان</h2>
+  <div class="grid2">
+    <div class="card"><div class="e">🙈</div><span class="t">لا معلومات شخصية</span><p>لا بريد إلكتروني، لا رقم هاتف، لا صور. فقط اسم وصورة رمزية ولون.</p></div>
+    <div class="card"><div class="e">🚫</div><span class="t">بلا إعلانات وبلا تتبع</span><p>لا يُعرض أي إعلان، ولا تُشارك أي بيانات مع جهات خارجية.</p></div>
+    <div class="card"><div class="e">🏠</div><span class="t">عائلة مغلقة</span><p>لا يرى بيانات العائلة إلا أفرادها. الانضمام برمز فقط، والرموز يمكن تغييرها في أي وقت.</p></div>
+    <div class="card"><div class="e">🛡️</div><span class="t">قواعد على الخادم</span><p>كل القواعد (من ينشئ العملات، الرصيد لا ينزل تحت الصفر، من يوافق) يتحقق منها الخادم نفسه، وليس الهاتف فقط.</p></div>
+    <div class="card"><div class="e">💸</div><span class="t">لا مال حقيقي</span><p>لا بطاقات، لا مدفوعات، لا مشتريات داخل التطبيق. العملات بلا قيمة نقدية.</p></div>
+    <div class="card"><div class="e">🗑️</div><span class="t">الحذف بيدك</span><p>احذف حسابك وبياناتك من داخل التطبيق في أي وقت.</p></div>
+  </div>
+  <div class="box" style="margin-top:6mm">
+    <span class="t">روابط</span>
+    سياسة الخصوصية: <span class="en">uaedoom.github.io/famcoins/privacy.html</span><br>
+    الدعم: <span class="en">uaedoom.github.io/famcoins/support.html</span>
+  </div>
+</section>
+
+<!-- ============ 20 ============ -->
+<section class="tight">
+  <h2><span class="num">20</span>أسئلة شائعة</h2>
+  <div class="box avoid"><span class="t">هل يمكن تحويل العملات إلى نقود حقيقية؟</span>لا. العملات للعب داخل العائلة فقط، وليس لها أي قيمة نقدية.</div>
+  <div class="box avoid"><span class="t">هل يحتاج الطفل إلى هاتف خاص؟</span>يحتاج كل فرد إلى جهاز آيفون خاص به ليكون له محفظته. يمكن للأطفال الصغار استخدام جهاز قديم في البيت.</div>
+  <div class="box avoid"><span class="t">ماذا لو حذف الطفل التطبيق؟</span>تضيع محفظة ذلك الجهاز لأن الحساب مرتبط بالجهاز. يمكنه الانضمام من جديد برمز، لكن برصيد صفر. يستطيع الوالد إرسال عملات جديدة لتعويضه.</div>
+  <div class="box avoid"><span class="t">هل يمكن أن يكون في العائلة أكثر من والد؟</span>نعم. انضم الوالد الثاني برمز الوالدين، وستكون له نفس الصلاحيات، وتصل إشعارات المهام والمشتريات للوالدين معاً.</div>
+  <div class="box avoid"><span class="t">أرسلت عملات بالخطأ، ماذا أفعل؟</span>إذا كنت والداً: افتح النشاط ← العملية ← تراجع. إذا كنت طفلاً: اطلب من أحد والديك.</div>
+  <div class="box avoid"><span class="t">هل يمكن أن يصبح الرصيد بالسالب؟</span>لا. لا يمكن إرسال أو شراء أكثر من الرصيد، ولا توجد ديون.</div>
+  <div class="box avoid"><span class="t">هل هناك حد للمبالغ؟</span>كل عملية بين 1 و100,000 عملة، وحتى 10 طلبات معلّقة لكل شخص، وحتى 5 أهداف نشطة، وحتى 12 فرداً في العائلة.</div>
+  <div class="box avoid"><span class="t">لماذا لم يصلني إشعار؟</span>تأكد من السماح بإشعارات FamCoins في إعدادات الآيفون ← الإشعارات، وأن الجهاز متصل بالإنترنت.</div>
+  <div class="box avoid"><span class="t">من أي عمر يناسب التطبيق؟</span>من 4 سنوات بمساعدة الوالدين، ويصبح مستقلاً تقريباً من 8 سنوات. التقييم في متجر التطبيقات 4+.</div>
+
+  <div class="quote">🪙 العملات للعب… لكن الدروس حقيقية.</div>
+  <p class="muted" style="text-align:center">FamCoins – محفظة العائلة · 2026</p>
+</section>
+
+</body>
+</html>
